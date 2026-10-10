@@ -16,7 +16,7 @@
 
   <script>
     async function loadTodos() {
-      const res = await fetch('/todos');
+      const res = await fetch('todos');
       const todos = await res.json();
       const list = document.getElementById('list');
       list.innerHTML = '';
@@ -36,7 +36,7 @@
     async function addTodo() {
       const input = document.getElementById('titleInput');
       if (!input.value) return;
-      await fetch('/todos', {
+      await fetch('todos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: input.value })
@@ -46,7 +46,7 @@
     }
 
     async function toggleTodo(id, completed) {
-      await fetch(`/todos/${id}`, {
+      await fetch(`todos/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ completed: !completed })
@@ -55,7 +55,7 @@
     }
 
     async function deleteTodo(id) {
-      await fetch(`/todos/${id}`, { method: 'DELETE' });
+      await fetch(`todos/${id}`, { method: 'DELETE' });
       loadTodos();
     }
 
@@ -63,4 +63,3 @@
   </script>
 </body>
 </html>
-
